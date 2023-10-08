@@ -1,6 +1,12 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { connect } from '../public/js/database.js';
+import {
+  connect,
+  insertDiaryEntry,
+  getDiaryEntryById,
+  updateDiaryEntryById,
+  deleteDiaryEntryById
+} from './server/database.js';
 
 const app = express();
 const PORT = 3000;
@@ -8,60 +14,51 @@ const PORT = 3000;
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-import { getDB } from '/public/js/database.js';
-
-
-
-// Your routes will be added here
-// Register route
-app.post('/register', async (req, res) => {
-    const { username, password } = req.body;
-    const user = { username, password }; // In real-world scenarios, passwords should be hashed and salted
-    const collection = getDB().collection('users');
-    const result = await collection.insertOne(user);
-    res.send(result.ops[0]);
-  });
-  
-  // Login route
-  app.post('/login', async (req, res) => {
-    const { username, password } = req.body;
-    const collection = getDB().collection('users');
-    const user = await collection.findOne({ username, password });
-    if (user) {
-      res.send(user);
-    } else {
-      res.status(401).send('Invalid credentials');
-    }
-  });
-  
-  // Add diary entry route
-  app.post('/diary', async (req, res) => {
-    const entry = req.body;
-    const collection = getDB().collection('entries');
-    const result = await collection.insertOne(entry);
-    res.send(result.ops[0]);
-  });
-  
-  // Get diary entries route
-  app.get('/diary', async (req, res) => {
-    const collection = getDB().collection('entries');
-    const entries = await collection.find({}).toArray();
-    res.send(entries);
-  });
-  
-  // Get specific diary entry route
-  app.get('/diary/:id', async (req, res) => {
-    const { id } = req.params;
-    const collection = getDB().collection('entries');
-    const entry = await collection.findOne({ _id: new require('mongodb').ObjectID(id) });
-    if (entry) {
-      res.send(entry);
-    } else {
-      res.status(404).send('Entry not found');
-    }
-  });
-
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-  connect();  // connect to the database
+app.post('/diary', async (req, res) => {
+  try {
+    const diaryEntry = await insertDiaryEntry(req.body);
+    res.status(201).send(diaryEntry.ops[0]);
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
+
+app.get('/diary/:id', async (req, res) => {
+  try {
+    const diaryEntry = await getDiaryEntryById(req.params.id);
+    res.status(200).send(diaryEntry);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+app.put('/diary/:id', async (req, res) => {
+  try {
+    const updatedEntry = await updateDiaryEntryById(req.params.id, req.body);
+    res.status(200).send(updatedEntry);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+app.delete('/diary/:id', async (req, res) => {
+  try {
+    await deleteDiaryEntryById(req.params.id);
+    res.status(200).send({ message: "Diary entry deleted." });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+async function start() {
+  try {
+    await connect();
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error("Failed to start the server:", error);
+  }
+}
+
+start();
