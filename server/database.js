@@ -39,10 +39,15 @@ async function deleteDiaryEntryById(id) {
   return db.collection('diary').deleteOne({ primeId: parseInt(id, 10) });
 }
 
+async function getDiaryEntriesByUserId(userid) {
+  return db.collection('diary').find({ userid: userid }).toArray();
+}
+
 export {
   connect,
   insertDiaryEntry,
   getDiaryEntryById,
   updateDiaryEntryById,
-  deleteDiaryEntryById
+  deleteDiaryEntryById,
+  getDiaryEntriesByUserId
 };

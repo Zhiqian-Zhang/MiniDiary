@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load User Diary Entries</title>
+</head>
+<body>
+    <h2>Load User Diary Entries</h2>
+    <div>
+        <label for="userid">User ID:</label>
+        <input type="text" id="userid">
+        <button onclick="loadEntries()">Load Entries</button>
+    </div>
+    
+    <h3>Diary Entries</h3>
+    <div id="entries">
+        <!-- Entries will be displayed here -->
+    </div>
+
+    <script>
+        async function loadEntries() {
+            const userid = document.getElementById('userid').value;
+            try {
+                const response = await fetch(`/diary/user/${userid}`);  // Assuming your API endpoint is like this
+                const data = await response.json();
+                
+                const entriesDiv = document.getElementById('entries');
+                entriesDiv.innerHTML = ""; // Clear previous entries
+                
+                data.forEach(entry => {
+                    const entryDiv = document.createElement('div');
+                    entryDiv.innerHTML = `
+                        <h4>${entry.title}</h4>
+                        <p>${entry.content}</p>
+                    `;
+                    entriesDiv.appendChild(entryDiv);
+                });
+                
+            } catch (err) {
+                console.error('Error fetching diary entries:', err);
+            }
+        }
+    </script>
+</body>
+</html>

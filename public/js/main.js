@@ -59,3 +59,26 @@ async function handleResponse(response) {
         document.getElementById('response').textContent = text;
     }
 }
+
+async function loadEntries() {
+    const userid = document.getElementById('userid').value;
+    try {
+        const response = await fetch(`/diary/user/${userid}`);  // Assuming your API endpoint is like this
+        const data = await response.json();
+        
+        const entriesDiv = document.getElementById('entries');
+        entriesDiv.innerHTML = ""; // Clear previous entries
+        
+        data.forEach(entry => {
+            const entryDiv = document.createElement('div');
+            entryDiv.innerHTML = `
+                <h4>${entry.title}</h4>
+                <p>${entry.content}</p>
+            `;
+            entriesDiv.appendChild(entryDiv);
+        });
+        
+    } catch (err) {
+        console.error('Error fetching diary entries:', err);
+    }
+}

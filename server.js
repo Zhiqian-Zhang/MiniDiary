@@ -5,14 +5,15 @@ import {
   insertDiaryEntry,
   getDiaryEntryById,
   updateDiaryEntryById,
-  deleteDiaryEntryById
+  deleteDiaryEntryById,
+  getDiaryEntriesByUserId
 } from './server/database.js';
 import { MongoClient } from 'mongodb';
 
 const app = express();
 const PORT = 3000;
 
-const client = new MongoClient('mongodb://localhost:27017', { useUnifiedTopology: true });
+const client = new MongoClient('mongodb://localhost:27017');
 const dbname = 'diaryDB';
 const db = client.db(dbname);
 const collection = db.collection('diary');
@@ -72,6 +73,17 @@ app.delete('/diary/:id', async (req, res) => {
     res.status(500).json({ success: false, message: 'Internal Server Error', error: err.message });
   }
 });
+
+app.get('/diary/user/:userid', async (req, res) => {
+  try {
+      const userid = req.params.userid;
+      const diaryEntries = await getDiaryEntriesByUserId(userid);
+      res.status(200).json(diaryEntries);
+  } catch (err) {
+      res.status(500).json({ success: false, message: 'Internal Server Error', error: err.message });
+  }
+});
+
 
 async function start() {
   try {
