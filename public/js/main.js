@@ -12,15 +12,14 @@ async function createEntry() {
             content: document.getElementById('content').value,
         }),
     });
-    const data = await response.json();
-    document.getElementById('response').textContent = JSON.stringify(data, null, 2);
+    
+    handleResponse(response);
 }
 
 async function readEntry() {
     const id = document.getElementById('entryId').value;
     const response = await fetch(`/diary/${id}`);
-    const data = await response.json();
-    document.getElementById('response').textContent = JSON.stringify(data, null, 2);
+    handleResponse(response);
 }
 
 async function updateEntry() {
@@ -37,8 +36,8 @@ async function updateEntry() {
             content: document.getElementById('content').value,
         }),
     });
-    const data = await response.json();
-    document.getElementById('response').textContent = JSON.stringify(data, null, 2);
+
+    handleResponse(response);
 }
 
 async function deleteEntry() {
@@ -46,6 +45,17 @@ async function deleteEntry() {
     const response = await fetch(`/diary/${id}`, {
         method: 'DELETE',
     });
-    const data = await response.json();
-    document.getElementById('response').textContent = JSON.stringify(data, null, 2);
+
+    handleResponse(response);
+}
+
+async function handleResponse(response) {
+    if(response.ok) {
+        const data = await response.json();
+        document.getElementById('response').textContent = JSON.stringify(data, null, 2);
+    } else {
+        // This will display the full response if there's an error
+        const text = await response.text();
+        document.getElementById('response').textContent = text;
+    }
 }

@@ -15,24 +15,28 @@ async function connect() {
   }
 }
 
-async function insertDiaryEntry(entry) {
-  return db.collection('diary').insertOne(entry);
+async function insertDiaryEntry(entry, primeId) {
+  const newDiaryEntry = {
+    primeId: primeId,
+    ...entry
+  };
+  return db.collection('diary').insertOne(newDiaryEntry);
 }
 
 async function getDiaryEntryById(id) {
-  return db.collection('diary').findOne({ _id: new MongoClient.ObjectID(id) });
+  return db.collection('diary').findOne({ primeId: parseInt(id, 10) });
 }
 
 async function updateDiaryEntryById(id, update) {
   await db.collection('diary').updateOne(
-    { _id: new MongoClient.ObjectID(id) },
+    { primeId: parseInt(id, 10) },
     { $set: update }
   );
   return getDiaryEntryById(id);
 }
 
 async function deleteDiaryEntryById(id) {
-  return db.collection('diary').deleteOne({ _id: new MongoClient.ObjectID(id) });
+  return db.collection('diary').deleteOne({ primeId: parseInt(id, 10) });
 }
 
 export {
