@@ -1,9 +1,6 @@
 function Account() {
   let me = {};
-
   const myUser = JSON.parse(localStorage.getItem("currUser"))[0];
-  console.log("LOG!!!:", myUser);
-
   const listingsElement = document.querySelector("#listings");
   const titleElement = document.querySelector("#title");
 
@@ -32,7 +29,7 @@ function Account() {
   document.getElementById("sort-btn").addEventListener("click", function () {
     const container = document.querySelector(".container-for-listings"); // the container where cards are appended
     const allListings = Array.from(
-      container.querySelectorAll("[data-prime-id]"),
+      container.querySelectorAll("[data-prime-id]")
     );
 
     // Sort the listings based on the timestamp
@@ -61,7 +58,6 @@ function Account() {
     if (e.target.classList.contains("delete-btn")) {
       const listingElement = e.target.closest(".col-4");
       const id = listingElement.getAttribute("data-prime-id");
-      console.log("document: " + id);
       // Send a DELETE request to the server
       try {
         const response = await fetch(`/diary/${id}`, {
@@ -91,9 +87,9 @@ function Account() {
       const content = listingElement.querySelector(".card-text").textContent;
 
       location.href = `/diaryEdit.html?id=${encodeURIComponent(
-        id,
+        id
       )}&title=${encodeURIComponent(title)}&content=${encodeURIComponent(
-        content,
+        content
       )}`;
     }
   });
@@ -127,6 +123,3 @@ function Account() {
 
 const account = Account();
 account.loadData();
-const u = JSON.parse(localStorage.getItem("currUser"));
-// console.log("LOG!!!:", u[0].username);
-// console.log("LOG!!!:", typeof localStorage.getItem("currUser"));

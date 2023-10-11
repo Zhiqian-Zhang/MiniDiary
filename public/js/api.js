@@ -6,7 +6,6 @@ import { fileURLToPath } from "url";
 export const router = express.Router();
 
 router.get("/account.html", async (req, res) => {
-  console.log("api.js GET dashboard.html");
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
   const dashboardFilePath = path.join(__dirname, "../account.html");
@@ -14,17 +13,13 @@ router.get("/account.html", async (req, res) => {
 });
 
 router.post("/account.html", async (req, res) => {
-  console.log("api.js POST account.html");
   const resDiary = await miniDiaryDB.findDiary();
-
   const user = req.body;
   const diaryRes = await miniDiaryDB.findDiary(user);
-
   res.send(diaryRes);
 });
 
 router.get("/dashboard.html", async (req, res) => {
-  console.log("api.js GET dashboard.html");
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
   const dashboardFilePath = path.join(__dirname, "../dashboard.html");
@@ -32,14 +27,11 @@ router.get("/dashboard.html", async (req, res) => {
 });
 
 router.post("/dashboard.html", async (req, res) => {
-  console.log("api.js POST dashboard.html");
   const resDiary = await miniDiaryDB.findDiary();
-  // res.send()
   res.json(resDiary);
 });
 
 router.get("/registration.html", async (req, res) => {
-  console.log("api.js GET registration.html");
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
   const dashboardFilePath = path.join(__dirname, "../registration.html");
@@ -47,7 +39,6 @@ router.get("/registration.html", async (req, res) => {
 });
 
 router.post("/registration.html", async (req, res) => {
-  console.log("api.js POST registration.html");
   const user = req.body;
   const usern = {
     username: user.username,
@@ -55,29 +46,17 @@ router.post("/registration.html", async (req, res) => {
 
   const userRes = await miniDiaryDB.findUser(usern);
   if (userRes.length != 0) {
-    console.log("api.js sending false");
     res.send(false);
   } else {
-    console.log("api.js ready to add user");
     const userAdd = await miniDiaryDB.addUser(user);
-    console.log("api.js sending true");
     res.send(true);
   }
-
-  // res.send({ users: userRes });
 });
 
 router.post("/", async (req, res) => {
-  console.log("api.js POST dashboard.html");
   const user = req.body;
-  // try{
   const userRes = await miniDiaryDB.findUser(user);
   res.send({ users: userRes });
-  // }
-  // catch(error){
-  //     console.log("login: error", error);
-  //     res.status(400).send({err: error});
-  // }
 });
 
 router.post("/diary", async (req, res) => {
@@ -103,7 +82,7 @@ router.put("/diary/:id", async (req, res) => {
   try {
     const result = await miniDiaryDB.updateDiaryEntryById(
       req.params.id,
-      req.body,
+      req.body
     );
     res.json(result);
   } catch (error) {

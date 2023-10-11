@@ -2,8 +2,6 @@ function DiaryOperations() {
   let me = {};
 
   const myUser = JSON.parse(localStorage.getItem("currUser"))[0];
-  console.log("LOG!!!:", myUser);
-
   const entriesElement = document.querySelector("#entries");
   const titleElement = document.querySelector("#title");
 
@@ -26,22 +24,6 @@ function DiaryOperations() {
                 </div>
                 `;
   }
-
-  // function redraw(entries) {
-  //     entriesElement.innerHTML = " ";
-  //     if (Array.isArray(entries)) {
-  //         entriesElement.innerHTML = entries.map(getEntryCode).join("\n");
-  //     } else {
-  //         entriesElement.innerHTML = "No diary entries found.";
-  //     }
-  //     titleElement.innerHTML = getTitleCode();
-  // }
-
-  // me.loadData = async function() {
-  //     const res = await fetch("/diary/user/" + myUser.userid);
-  //     const entries = await res.json();
-  //     redraw(entries);
-  // }
 
   me.createEntry = async function (title, content) {
     const entry = {

@@ -1,26 +1,20 @@
 import { MongoClient } from "mongodb";
 
 function MiniDiaryDB() {
-  console.log("Enter UserDB module");
   const miniDiaryDB = {};
-
   const URL = "mongodb://localhost:27017";
-  // const URL = "mongodb://104.248.240.225:27017";
   const DB_NAME = "MiniDiaryDB";
   const USERS_COLLECTION = "users";
   const DIARIES_COLLECTION = "diaries";
 
   const connect = async () => {
-    console.log("userDB.js connecting to db");
     const client = new MongoClient(URL);
     const db = client.db(DB_NAME);
-    console.log("userDB.js connected to db");
     return { client, db };
   };
 
   async function initializeCounter() {
     const { client, db } = await connect();
-
     const existing = await db
       .collection("counters")
       .findOne({ _id: "diaryEntryId" });
@@ -42,7 +36,7 @@ function MiniDiaryDB() {
       .findOneAndUpdate(
         { _id: "diaryEntryId" },
         { $inc: { sequence_value: 1 } },
-        { returnOriginal: false },
+        { returnOriginal: false }
       );
     client.close();
     if (

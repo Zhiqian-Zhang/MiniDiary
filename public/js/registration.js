@@ -35,15 +35,15 @@ function Registration() {
       } else {
         if (!isValidUsername(usernameIn) && !isValidPassword(passwordIn)) {
           me.showLoginError(
-            "Invalid username and password!\n\nUsername should be at least 3 and at most 10 characters long.\nShould only include letters, numbers, and -_\n\nPassword should be at least 8 and at most 16 characters long.\nShould only include letters, numbers, and @.!?",
+            "Invalid username and password!\n\nUsername should be at least 3 and at most 10 characters long.\nShould only include letters, numbers, and -_\n\nPassword should be at least 8 and at most 16 characters long.\nShould only include letters, numbers, and @.!?"
           );
         } else if (!isValidUsername(usernameIn)) {
           me.showLoginError(
-            "Invalid username!\nShould be at least 3 and at most 10 characters long.\nShould only include letters, numbers, and -_",
+            "Invalid username!\nShould be at least 3 and at most 10 characters long.\nShould only include letters, numbers, and -_"
           );
         } else if (!isValidPassword(passwordIn)) {
           me.showLoginError(
-            "Invalid password!\nShould be at least 8 and at most 16 characters long.\nShould only include uppercase and lowercase letters, numbers, and @.!?",
+            "Invalid password!\nShould be at least 8 and at most 16 characters long.\nShould only include uppercase and lowercase letters, numbers, and @.!?"
           );
         } else if (passwordIn != retypeIn) {
           me.showLoginError("Passwords do not match.");
