@@ -49,6 +49,14 @@ async function deleteEntry() {
     handleResponse(response);
 }
 
+async function deleteEntryByID(id) {
+    const response = await fetch(`/diary/${id}`, {
+        method: 'DELETE',
+    });
+
+    handleResponse(response);
+}
+
 async function handleResponse(response) {
     if(response.ok) {
         const data = await response.json();

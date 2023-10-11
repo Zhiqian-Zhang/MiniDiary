@@ -2,7 +2,7 @@
   "name": "minidiary",
   "version": "1.0.0",
   "description": "A web-based application allows users to write and read diaries",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

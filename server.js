@@ -1,41 +1,35 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import { MongoClient } from 'mongodb';
-import { connect } from './public/js/database.js';
-import {
-  postDiary,
-  getDiaryById,
-  updateDiaryById,
-  deleteDiaryById,
-  getDiaryByUserId
-} from './public/js/api.js';
+import express from "express";
+import apiRouter from "./public/js/api.js";
+import bodyParser from "body-parser";
+
+import path from "path";
+import { fileURLToPath } from 'url';
 
 const app = express();
-const PORT = 3001;
+const PORT = 3000;
 
-const client = new MongoClient('mongodb://localhost:27017');
-const dbname = 'diaryDB';
-const db = client.db(dbname);
-const collection = db.collection('diary');
+app.use(express.static("frontend"));
 
-app.use(bodyParser.json());
-app.use(express.static('public'));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use(express.static(__dirname + '/public'));
 
-app.post('/diary', (req, res) => postDiary(req, res, collection));
-app.get('/diary/:id', getDiaryById);
-app.put('/diary/:id', updateDiaryById);
-app.delete('/diary/:id', deleteDiaryById);
-app.get('/diary/user/:userid', getDiaryByUserId);
+// app.use(express.static('public', { 'extensions': ['html', 'css'] }));
 
-async function start() {
-  try {
-    await connect();
-    app.listen(PORT, '0.0.0.0', () => {
-      console.log(`Server is running on port ${PORT}`);
-    });
-  } catch (error) {
-    console.error("Failed to start the server:", error);
-  }
-}
 
-start();
+
+app.use(bodyParser.json()); // Parse JSON bodies
+// app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded bodies
+
+
+// http://localhost:3000/api/prompts
+app.use("/", apiRouter);
+
+
+const onListen = () => {
+    console.log("I'm ready to pass the callback");
+    return () => {
+        console.log(`Server running on port ${PORT}`);
+    }
+};
+app.listen(PORT, onListen());
