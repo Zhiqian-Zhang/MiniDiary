@@ -83,23 +83,50 @@ body {
 }
 
 #sort-btn {
-  width: 9vw;
+  width: 11vw;
   height: 2.5vw;
   background-color: #9f96ff;
   color: white;
   font-size: 1vw;
+  margin-right: 1vw;
+  border-color: #7468ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#updateEntryBtn,
-#createEntryBtn,
-#addDiaryBtn,
-.update-btn,
-.delete-btn {
-  width: 7vw;
-  height: 3vw;
+#addDiaryBtn {
+  width: 8vw;
+  height: 2.5vw;
   background-color: #9f96ff;
   color: white;
-  font-size: 1.3vw;
+  font-size: 1vw;
+  margin-left: 1vw;
+  border-color: #7468ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#update-btn,
+#delete-btn {
+  width: 7vw;
+  height: 2.5vw;
+  background-color: #9f96ff;
+  color: white;
+  font-size: 1vw;
+  border-color: #7468ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
 }
 
 nav a {

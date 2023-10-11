@@ -10,17 +10,18 @@ function Account() {
 
   function getListingCode(listing) {
     return `<div class="col-4" data-prime-id="${listing.primeId}">
-                  <div class="listing card">
-                    <div class="card-body">
-                    <h2 class="card-title">${listing.title}</h2>
-                    <p class="card-time">${listing.timestamp}</p>
-                    <p class="card-text">${listing.content}</p>
-                    <button class="update-btn">Update</button>
-                    <button class="delete-btn" id="delete-btn">Delete</button>
-                    </div>
+              <div class="listing card">
+                <div class="card-body">
+                  <h2 class="card-title">${listing.title}</h2>
+                  <p class="card-time">${listing.timestamp}</p>
+                  <p class="card-text">${listing.content}</p>
+                  <div class="btn-container">
+                    <button class="btn btn-primary" id="update-btn">Update</button>
+                    <button class="btn btn-primary" id="delete-btn">Delete</button>
                   </div>
-                  <!-- /card -->
                 </div>
+              </div>
+            </div>
                 `;
   }
 

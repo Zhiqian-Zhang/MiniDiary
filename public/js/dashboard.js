@@ -4,23 +4,22 @@ function Dashboard(listingsID = "#listings") {
 
   function getListingCode(listing) {
     return `<div class="col-4" data-prime-id="${listing.primeId}">
-                  <div class="listing card">
-                    <div class="card-body">
-                      <h2 class="card-title">${listing.title}</h2>
-                      <p class="card-time">${listing.timestamp}</p>
-                      <p class="card-text">${listing.content}</p>
-                      <p class="card-user">By @${listing.username}</p>
-                    </div>
-                  </div>
-                  <!-- /card -->
+              <div class="listing card">
+                <div class="card-body">
+                  <h2 class="card-title">${listing.title}</h2>
+                  <p class="card-time">${listing.timestamp}</p>
+                  <p class="card-text">${listing.content}</p>
+                  <p class="card-user">By @${listing.username}</p>
                 </div>
+              </div>
+            </div>
                 `;
   }
 
   let isAscending = true; // keeps track of the current sort direction
 
   document.getElementById("sort-btn").addEventListener("click", function () {
-    const container = document.querySelector(".container-for-listings"); // the container where cards are appended
+    const container = document.querySelector(".row"); // the container where cards are appended
     const allListings = Array.from(
       container.querySelectorAll("[data-prime-id]")
     );
