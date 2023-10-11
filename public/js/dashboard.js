@@ -1,11 +1,11 @@
 function Dashboard(listingsID = "#listings") {
-    console.log("enter Dashboard()");
-    console.log("LOG!!!:", JSON.parse(localStorage.getItem("currUser")));
-    let me = {};
-    const listingsElement = document.querySelector(listingsID);
+  console.log("enter Dashboard()");
+  console.log("LOG!!!:", JSON.parse(localStorage.getItem("currUser")));
+  let me = {};
+  const listingsElement = document.querySelector(listingsID);
 
-    function getListingCode(listing) {
-        return `<div class="col-4">
+  function getListingCode(listing) {
+    return `<div class="col-4">
                   <div class="listing card">
                     <div class="card-body">
                       <h2 class="card-title">${listing.title}</h2>
@@ -17,22 +17,21 @@ function Dashboard(listingsID = "#listings") {
                   <!-- /card -->
                 </div>
                 `;
-    }
+  }
 
-    function redraw(listings) {
-        listingsElement.innerHTML = "";
-        listingsElement.innerHTML = listings.map(getListingCode).join("\n");
-    }
-    
-    me.loadData = async function() {
-        const res = await fetch("/dashboard.html", { method: "POST" });
-        const listings = await res.json();
-    
-        redraw(listings);
-    }
+  function redraw(listings) {
+    listingsElement.innerHTML = "";
+    listingsElement.innerHTML = listings.map(getListingCode).join("\n");
+  }
 
-    return me;
+  me.loadData = async function () {
+    const res = await fetch("/dashboard.html", { method: "POST" });
+    const listings = await res.json();
 
+    redraw(listings);
+  };
+
+  return me;
 }
 
 const dashboard = Dashboard();
