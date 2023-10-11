@@ -65,6 +65,16 @@ body {
   height: 1px;
 }
 
+#sort-btn {
+  width: 10vw;
+  height: 3vw;
+  background-color: #9f96ff;
+  color: white;
+  font-size: 1.3vw;
+}
+
+#updateEntryBtn,
+#createEntryBtn,
 #addDiaryBtn,
 .update-btn,
 .delete-btn {

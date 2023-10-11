@@ -24,13 +24,19 @@ A simple webpage acts like a blogging platform, allowing users to perform basic 
 
 ### Functionalities
 
-- [ ] Account management: allows users to sign up, log in, and log out.
-- [ ] Creating posts: allows users to create posts with text, image, video, external link.
-- [ ] Reading posts: allows users to browse all posts made by others.
-- [ ] Updating posts: allows users to update their own posts.
-- [ ] Deleting posts: allows users to delete existing posts made by themselves.
-- [ ] Sorting posts by date ascending or descending.
+- [x] Account management: allows users to sign up, log in, and log out.
+- [x] Creating posts: allows users to create posts with text.
+- [x] Reading posts: allows users to browse all posts made by others.
+- [x] Updating posts: allows users to update their own posts.
+- [x] Deleting posts: allows users to delete existing posts made by themselves.
+- [x] Sorting posts by date ascending or descending.
 
 ## Screenshots
+
+[Registration](./docs/screenshots/registration.png)
+[Input Validation](./docs/screenshots/input-validation.png)
+[Home](./docs/screenshots/main-page.png)
+[Account Page](./docs/screenshots/own-page.png)
+[Dashboard](./docs/screenshots/dashboard.png)
 
 ## Instruction to build

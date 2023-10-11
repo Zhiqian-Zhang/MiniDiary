@@ -27,6 +27,36 @@ function Account() {
                 `;
   }
 
+  let isAscending = true; // keeps track of the current sort direction
+
+  document.getElementById("sort-btn").addEventListener("click", function () {
+    const container = document.querySelector(".container-for-listings"); // the container where cards are appended
+    const allListings = Array.from(
+      container.querySelectorAll("[data-prime-id]"),
+    );
+
+    // Sort the listings based on the timestamp
+    allListings.sort((a, b) => {
+      const dateA = a.querySelector(".card-time").textContent;
+      const dateB = b.querySelector(".card-time").textContent;
+      return isAscending
+        ? dateA.localeCompare(dateB)
+        : dateB.localeCompare(dateA);
+    });
+
+    // Clear the container and append the sorted listings
+    container.innerHTML = "";
+    allListings.forEach((listing) => {
+      container.appendChild(listing);
+    });
+
+    // Toggle the sort direction and update the button label
+    isAscending = !isAscending;
+    document.getElementById("sort-btn").textContent = isAscending
+      ? "Sort Ascending"
+      : "Sort Descending";
+  });
+
   document.addEventListener("click", async function (e) {
     if (e.target.classList.contains("delete-btn")) {
       const listingElement = e.target.closest(".col-4");
