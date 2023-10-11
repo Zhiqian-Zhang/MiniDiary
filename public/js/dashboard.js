@@ -5,7 +5,7 @@ function Dashboard(listingsID = "#listings") {
   const listingsElement = document.querySelector(listingsID);
 
   function getListingCode(listing) {
-    return `<div class="col-4">
+    return `<div class="col-4" data-prime-id="${listing.primeId}">
                   <div class="listing card">
                     <div class="card-body">
                       <h2 class="card-title">${listing.title}</h2>
