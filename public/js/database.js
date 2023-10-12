@@ -1,14 +1,16 @@
 import { MongoClient } from "mongodb";
+import "dotenv/config";
 
 function MiniDiaryDB() {
   const miniDiaryDB = {};
-  const URL = "mongodb://localhost:27017";
+  const URL = process.env.MONGO_URL || "mongodb://localhost:27017";
   const DB_NAME = "MiniDiaryDB";
   const USERS_COLLECTION = "users";
   const DIARIES_COLLECTION = "diaries";
 
   const connect = async () => {
     const client = new MongoClient(URL);
+    console.log("Connecting to DB..." + URL);
     const db = client.db(DB_NAME);
     return { client, db };
   };
