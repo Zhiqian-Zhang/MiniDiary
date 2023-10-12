@@ -31,6 +31,18 @@ A simple webpage acts like a blogging platform, allowing users to perform basic 
 - [x] Deleting posts: allows users to delete existing posts made by themselves.
 - [x] Sorting posts by date ascending or descending.
 
+### Technology & Framework
+- HTML
+- CSS
+- Bootstrap
+- JavaScript
+- Express.js
+- Node.js
+- Nodemon
+- body-parser
+- Prettier
+- ESLint
+
 ## Screenshots
 
 ![Registration](./docs/screenshots/registration.png)
