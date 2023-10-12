@@ -95,6 +95,8 @@ body {
   align-items: center;
 }
 
+#createEntryBtn,
+#updateEntryBtn,
 #addDiaryBtn {
   width: 8vw;
   height: 2.5vw;
