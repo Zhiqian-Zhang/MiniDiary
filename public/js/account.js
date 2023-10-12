@@ -15,7 +15,7 @@ function Account() {
                   <h2 class="card-title">${listing.title}</h2>
                   <p class="card-time">${listing.timestamp}</p>
                   <p class="card-text">${listing.content}</p>
-                  <div class="btn-container" data-prime-id="${listing.primeId}">
+                  <div class="btn-container">
                     <button class="update-btn">Update</button>
                     <button class="delete-btn">Delete</button>
                   </div>
@@ -83,7 +83,6 @@ function Account() {
 
   // Handle the update button click
   document.addEventListener("click", function (e) {
-    console.log("update button clicked");
     if (e.target.classList.contains("update-btn")) {
       console.log("update button clicked");
       const listingElement = e.target.closest(".col-4");
