@@ -42,6 +42,8 @@ A simple webpage acts like a blogging platform, allowing users to perform basic 
 
 After cloning the repository, run the following commands in the root directory of the project:
 
-```npm install```
-```npm start```
+```
+npm install
+npm start
+```
 
