@@ -1,12 +1,13 @@
 import express from "express";
 import apiRouter from "./public/js/api.js";
 import bodyParser from "body-parser";
+import "dotenv/config"
 
 import path from "path";
 import { fileURLToPath } from "url";
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.static("frontend"));
 
