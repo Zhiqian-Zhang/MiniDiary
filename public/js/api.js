@@ -1,3 +1,8 @@
+/**
+ * @author Yunke Nie
+ * @author Naiyi Zhang
+ */
+
 import express from "express";
 import { miniDiaryDB } from "./database.js";
 import path from "path";

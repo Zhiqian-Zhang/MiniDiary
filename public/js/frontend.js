@@ -1,3 +1,7 @@
+/**
+ * @author Naiyi Zhang
+ */
+
 function FrontEnd() {
   localStorage.removeItem("currUser");
   let me = {};

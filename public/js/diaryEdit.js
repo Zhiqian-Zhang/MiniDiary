@@ -1,3 +1,7 @@
+/**
+ * @author Yunke Nie
+ */
+
 function diaryEdit() {
   let me = {};
 

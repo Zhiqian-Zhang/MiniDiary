@@ -1,3 +1,7 @@
+/**
+ * @author Yunke Nie
+ */
+
 function Account() {
   let me = {};
   const myUser = JSON.parse(localStorage.getItem("currUser"))[0];
@@ -57,10 +61,8 @@ function Account() {
 
   document.addEventListener("click", async function (e) {
     if (e.target.classList.contains("delete-btn")) {
-      console.log("delete button clicked");
       const listingElement = e.target.closest(".col-4");
       const id = listingElement.getAttribute("data-prime-id");
-      console.log("prime id: ", id);
       // Send a DELETE request to the server
       try {
         const response = await fetch(`/diary/${id}`, {
@@ -109,14 +111,11 @@ function Account() {
   }
 
   me.loadData = async function () {
-    // const res = await fetch("/account.html", { method: "POST" });
-
     const res = await fetch("/account.html", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(myUser),
     });
-
     const listings = await res.json();
 
     redraw(listings);

@@ -1,3 +1,8 @@
+/**
+ * @author Yunke Nie
+ * @author Naiyi Zhang
+ */
+
 function Dashboard(listingsID = "#listings") {
   let me = {};
   const listingsElement = document.querySelector(listingsID);

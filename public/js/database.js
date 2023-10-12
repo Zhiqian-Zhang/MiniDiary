@@ -1,3 +1,8 @@
+/**
+ * @author Yunke Nie
+ * @author Naiyi Zhang
+ */
+
 import { MongoClient } from "mongodb";
 import "dotenv/config";
 

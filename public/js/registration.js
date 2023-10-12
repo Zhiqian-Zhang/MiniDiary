@@ -1,3 +1,7 @@
+/**
+ * @author Naiyi Zhang
+ */
+
 function Registration() {
   let me = {};
 
