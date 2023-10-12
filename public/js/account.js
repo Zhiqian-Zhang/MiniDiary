@@ -28,7 +28,7 @@ function Account() {
   let isAscending = true; // keeps track of the current sort direction
 
   document.getElementById("sort-btn").addEventListener("click", function () {
-    const container = document.querySelector(".container-for-listings"); // the container where cards are appended
+    const container = document.getElementById("listings"); // the container where cards are appended
     const allListings = Array.from(
       container.querySelectorAll("[data-prime-id]")
     );
