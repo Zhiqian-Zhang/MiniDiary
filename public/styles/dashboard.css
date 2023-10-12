@@ -114,8 +114,8 @@ body {
   align-items: center;
 }
 
-#update-btn,
-#delete-btn {
+.update-btn,
+.delete-btn {
   width: 7vw;
   height: 2.5vw;
   background-color: #9f96ff;

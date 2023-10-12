@@ -15,9 +15,9 @@ function Account() {
                   <h2 class="card-title">${listing.title}</h2>
                   <p class="card-time">${listing.timestamp}</p>
                   <p class="card-text">${listing.content}</p>
-                  <div class="btn-container">
-                    <button class="btn btn-primary" id="update-btn">Update</button>
-                    <button class="btn btn-primary" id="delete-btn">Delete</button>
+                  <div class="btn-container" data-prime-id="${listing.primeId}">
+                    <button class="update-btn">Update</button>
+                    <button class="delete-btn">Delete</button>
                   </div>
                 </div>
               </div>
@@ -57,8 +57,10 @@ function Account() {
 
   document.addEventListener("click", async function (e) {
     if (e.target.classList.contains("delete-btn")) {
+      console.log("delete button clicked");
       const listingElement = e.target.closest(".col-4");
       const id = listingElement.getAttribute("data-prime-id");
+      console.log("prime id: ", id);
       // Send a DELETE request to the server
       try {
         const response = await fetch(`/diary/${id}`, {
@@ -81,7 +83,9 @@ function Account() {
 
   // Handle the update button click
   document.addEventListener("click", function (e) {
+    console.log("update button clicked");
     if (e.target.classList.contains("update-btn")) {
+      console.log("update button clicked");
       const listingElement = e.target.closest(".col-4");
       const id = listingElement.getAttribute("data-prime-id");
       const title = listingElement.querySelector(".card-title").textContent;
