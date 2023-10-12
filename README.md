@@ -33,10 +33,10 @@ A simple webpage acts like a blogging platform, allowing users to perform basic 
 
 ## Screenshots
 
-[Registration](./docs/screenshots/registration.png)
-[Input Validation](./docs/screenshots/input-validation.png)
-[Home](./docs/screenshots/main-page.png)
-[Account Page](./docs/screenshots/own-page.png)
-[Dashboard](./docs/screenshots/dashboard.png)
+![Registration](./docs/screenshots/registration.png)
+![Input Validation](./docs/screenshots/input-validation.png)
+![Home](./docs/screenshots/main-page.png)
+![Account Page](./docs/screenshots/own-page.png)
+![Dashboard](./docs/screenshots/dashboard.png)
 
 ## Instruction to build
