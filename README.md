@@ -1,3 +1,6 @@
+// Very clear and well-structured! It might be a good idea to add the slide link and video link :)
+
+
 # MiniDiary
 
 > Author: Naiyi Zhang & Yunke Nie
